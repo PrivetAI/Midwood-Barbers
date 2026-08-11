@@ -1,0 +1,370 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		308AF96128B5EECC625790C1 /* BookingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45C712B4C17F90643263A8A /* BookingSheet.swift */; };
+		4940BAA0D9567B7ABDF2F842 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC2B8F09C9DE5B33A507CDA /* ShopView.swift */; };
+		4B87480DD3858CE5417728A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92FE6B1DC809EEC59E0C21D /* HomeView.swift */; };
+		6160B613E5D704D72E787C5D /* Grain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D184C142DCD68209CCBA304 /* Grain.swift */; };
+		73D016FE54F13D71556235F6 /* MidwoodWebPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603D03DCE38B18144C966C9 /* MidwoodWebPanel.swift */; };
+		76F7340444E97669725F8B0C /* Chairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4517597AC313AA8B223E4DA /* Chairs.swift */; };
+		9F4738A1C157C7B5306833C8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BA38A18437B8BD3AB29938 /* Shop.swift */; };
+		A0F2D5C7ABF4EA4508321167 /* MidwoodBarbersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D31E033B61D3E32C437D2F /* MidwoodBarbersApp.swift */; };
+		AE45FD2008E9E6EC39A47ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20D1C0308AA65516EA34AA1 /* Assets.xcassets */; };
+		C5F6D8A39BDB1E9029B8EA95 /* MidwoodOpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A908520817657D1C3FDE1A0 /* MidwoodOpeningScreen.swift */; };
+		CD1DDF8F8D7CA98A736FABD9 /* ShopShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FDC2262108FCF0722C5228 /* ShopShell.swift */; };
+		E1799FA5F69CF469623BA3DA /* VisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AE68770282207208FE95B /* VisitsView.swift */; };
+		E5151E2D44EC75A2A5E7FB4B /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FA6C676FBBCB85E16EE5D /* ServicesView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0FC2B8F09C9DE5B33A507CDA /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		4603D03DCE38B18144C966C9 /* MidwoodWebPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidwoodWebPanel.swift; sourceTree = "<group>"; };
+		4D184C142DCD68209CCBA304 /* Grain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grain.swift; sourceTree = "<group>"; };
+		52D31E033B61D3E32C437D2F /* MidwoodBarbersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidwoodBarbersApp.swift; sourceTree = "<group>"; };
+		7A908520817657D1C3FDE1A0 /* MidwoodOpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidwoodOpeningScreen.swift; sourceTree = "<group>"; };
+		8A2C2D2519A8A6A1DEE0E6B4 /* Midwood Barbers.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Midwood Barbers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F7FA6C676FBBCB85E16EE5D /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
+		B45C712B4C17F90643263A8A /* BookingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSheet.swift; sourceTree = "<group>"; };
+		CE0AE68770282207208FE95B /* VisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitsView.swift; sourceTree = "<group>"; };
+		E20D1C0308AA65516EA34AA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0BA38A18437B8BD3AB29938 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		F4517597AC313AA8B223E4DA /* Chairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chairs.swift; sourceTree = "<group>"; };
+		F7FDC2262108FCF0722C5228 /* ShopShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopShell.swift; sourceTree = "<group>"; };
+		F92FE6B1DC809EEC59E0C21D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		A99368CB6BB3CAC70BDE4833 = {
+			isa = PBXGroup;
+			children = (
+				C2C42FA13AF78D825C354714 /* Midwood Barbers */,
+				CE68FBF7DA4FF8B7D9EF0DCD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2C42FA13AF78D825C354714 /* Midwood Barbers */ = {
+			isa = PBXGroup;
+			children = (
+				E20D1C0308AA65516EA34AA1 /* Assets.xcassets */,
+				B45C712B4C17F90643263A8A /* BookingSheet.swift */,
+				F4517597AC313AA8B223E4DA /* Chairs.swift */,
+				4D184C142DCD68209CCBA304 /* Grain.swift */,
+				F92FE6B1DC809EEC59E0C21D /* HomeView.swift */,
+				52D31E033B61D3E32C437D2F /* MidwoodBarbersApp.swift */,
+				7A908520817657D1C3FDE1A0 /* MidwoodOpeningScreen.swift */,
+				4603D03DCE38B18144C966C9 /* MidwoodWebPanel.swift */,
+				9F7FA6C676FBBCB85E16EE5D /* ServicesView.swift */,
+				F0BA38A18437B8BD3AB29938 /* Shop.swift */,
+				F7FDC2262108FCF0722C5228 /* ShopShell.swift */,
+				0FC2B8F09C9DE5B33A507CDA /* ShopView.swift */,
+				CE0AE68770282207208FE95B /* VisitsView.swift */,
+			);
+			path = "Midwood Barbers";
+			sourceTree = "<group>";
+		};
+		CE68FBF7DA4FF8B7D9EF0DCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A2C2D2519A8A6A1DEE0E6B4 /* Midwood Barbers.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F258C6937AD4676902F32285 /* Midwood Barbers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67F89283618E78663903A2EC /* Build configuration list for PBXNativeTarget "Midwood Barbers" */;
+			buildPhases = (
+				5BAB97B812CD7657AD7DF783 /* Sources */,
+				75B5EAECB1DC325B28484E8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Midwood Barbers";
+			packageProductDependencies = (
+			);
+			productName = "Midwood Barbers";
+			productReference = 8A2C2D2519A8A6A1DEE0E6B4 /* Midwood Barbers.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0E245354067F4827BC4DBBA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					F258C6937AD4676902F32285 = {
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = F283488ADE4B88DC8285CE63 /* Build configuration list for PBXProject "Midwood Barbers" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A99368CB6BB3CAC70BDE4833;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CE68FBF7DA4FF8B7D9EF0DCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F258C6937AD4676902F32285 /* Midwood Barbers */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		75B5EAECB1DC325B28484E8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE45FD2008E9E6EC39A47ECA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BAB97B812CD7657AD7DF783 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308AF96128B5EECC625790C1 /* BookingSheet.swift in Sources */,
+				76F7340444E97669725F8B0C /* Chairs.swift in Sources */,
+				6160B613E5D704D72E787C5D /* Grain.swift in Sources */,
+				4B87480DD3858CE5417728A4 /* HomeView.swift in Sources */,
+				A0F2D5C7ABF4EA4508321167 /* MidwoodBarbersApp.swift in Sources */,
+				C5F6D8A39BDB1E9029B8EA95 /* MidwoodOpeningScreen.swift in Sources */,
+				73D016FE54F13D71556235F6 /* MidwoodWebPanel.swift in Sources */,
+				E5151E2D44EC75A2A5E7FB4B /* ServicesView.swift in Sources */,
+				9F4738A1C157C7B5306833C8 /* Shop.swift in Sources */,
+				CD1DDF8F8D7CA98A736FABD9 /* ShopShell.swift in Sources */,
+				4940BAA0D9567B7ABDF2F842 /* ShopView.swift in Sources */,
+				E1799FA5F69CF469623BA3DA /* VisitsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1FFAC6877F4892CF068AACA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		32CE78CEA4B798E427E38E62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Midwood Barbers";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.midwoodbarbers.app;
+				PRODUCT_NAME = "Midwood Barbers";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		9B0D09CF870E823C3A253EDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E9EE5AE7CD1C064623AF01E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Midwood Barbers";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.midwoodbarbers.app;
+				PRODUCT_NAME = "Midwood Barbers";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67F89283618E78663903A2EC /* Build configuration list for PBXNativeTarget "Midwood Barbers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32CE78CEA4B798E427E38E62 /* Debug */,
+				E9EE5AE7CD1C064623AF01E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F283488ADE4B88DC8285CE63 /* Build configuration list for PBXProject "Midwood Barbers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B0D09CF870E823C3A253EDB /* Debug */,
+				1FFAC6877F4892CF068AACA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0E245354067F4827BC4DBBA5 /* Project object */;
+}
