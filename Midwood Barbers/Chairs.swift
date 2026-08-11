@@ -88,9 +88,14 @@ enum ChairLoad {
 
     /// Whether one chair is busy in one quarter hour. The shop-wide pressure sets the
     /// tide; the per-chair draw decides which chair goes first.
-    static func isTaken(dayKey: String, serviceId: String, chair: Int, minutes: Int) -> Bool {
+    ///
+    /// The service is deliberately not in the seed. There is one diary, and a quarter hour
+    /// that is busy is busy whatever the customer came in for — seeding per service let a
+    /// 75-minute sit be free in an hour where a 15-minute line-up was taken, which cannot
+    /// happen in a real book. Scarcity comes from the run length instead, below.
+    static func isTaken(dayKey: String, chair: Int, minutes: Int) -> Bool {
         let pressure = surge(dayKey: dayKey, minutes: minutes)
-        let personal = unit("chair|\(dayKey)|\(serviceId)|\(chair)|\(minutes)")
+        let personal = unit("chair|\(dayKey)|\(chair)|\(minutes)")
         // Late afternoon fills first; the first hour after opening stays clear longest.
         let span = max(1, Shop.latestClose - Shop.earliestOpen)
         let timeOfDay = Double(minutes - Shop.earliestOpen) / Double(span)
@@ -129,17 +134,34 @@ final class Chairbook: ObservableObject {
         guard let opens = hours.opensAt, let closes = hours.closesAt else { return [] }
 
         let key = Chairbook.dayKey(day)
+        // A time that has already gone by is not a time anybody can take. On today's
+        // column the day starts at the next half hour, the same rule the "soonest" line
+        // on the board goes by — otherwise the board offers a ten o'clock chair at four.
+        let calendar = Calendar.current
+        let passed: Int
+        if calendar.isDateInToday(day) {
+            let now = Date()
+            passed = calendar.component(.hour, from: now) * 60
+                + calendar.component(.minute, from: now)
+        } else {
+            passed = -1
+        }
+
         var result: [ChairSlot] = []
         var start = opens
 
         while start + service.minutes <= closes {
+            guard start > passed else {
+                start += 30
+                continue
+            }
+
             var free = 0
             for chair in 0..<Shop.chairCount {
                 var minute = start
                 var clear = true
                 while minute < start + service.minutes {
-                    if ChairLoad.isTaken(dayKey: key, serviceId: service.id,
-                                         chair: chair, minutes: minute) {
+                    if ChairLoad.isTaken(dayKey: key, chair: chair, minutes: minute) {
                         clear = false
                         break
                     }

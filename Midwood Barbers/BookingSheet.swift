@@ -144,7 +144,13 @@ struct BookingSheet: View {
             .padding(.bottom, 8)
 
             if slots.isEmpty {
-                Text("The shop is shut on \(Stamp.weekdayFull(day)).")
+                // Two different empty days: the shop was never open, or what is left of
+                // today is shorter than the service. Saying "shut" for the second would
+                // be a lie on a day the door is open.
+                Text(Shop.isOpenDay(day)
+                     ? "There is not enough of today left for a \(service.name.lowercased()). "
+                       + "Try another date on the strip."
+                     : "The shop is shut on \(Stamp.weekdayFull(day)).")
                     .font(Pine.copy(14))
                     .foregroundColor(Pine.letterSoft)
                     .fixedSize(horizontal: false, vertical: true)
