@@ -7,6 +7,9 @@ struct VisitsView: View {
     let openServices: () -> Void
 
     @State private var pendingCancel: Booking?
+    /// The service a past stub is being taken up again with. No barber travels with it —
+    /// there is nobody to carry over, because the chair was the shop's the first time too.
+    @State private var again: Service?
 
     var body: some View {
         Page {
@@ -44,6 +47,7 @@ struct VisitsView: View {
             if !chairbook.past.isEmpty {
                 VStack(alignment: .leading, spacing: 12) {
                     Overline(text: "Been and gone")
+                    tally
                     ForEach(chairbook.past) { held in
                         stub(held, isPast: true)
                     }
@@ -56,6 +60,44 @@ struct VisitsView: View {
                   primaryButton: .destructive(Text("Give it up")) { chairbook.cancel(held) },
                   secondaryButton: .cancel())
         }
+        .sheet(item: $again) { service in
+            BookingSheet(service: service).environmentObject(chairbook)
+        }
+    }
+
+    /// Three figures over the visits that have been: how many, what they came to, and how
+    /// often. The gap only turns up from the second visit on — between one visit and
+    /// nothing there is no gap at all, and a printed "0 days" would read as a fact.
+    private var tally: some View {
+        Slab {
+            HStack(spacing: 14) {
+                figure("\(chairbook.past.count)",
+                       chairbook.past.count == 1 ? "visit" : "visits")
+                Rectangle().fill(Pine.hair).frame(width: Gap.hair, height: 34)
+                figure(Shop.money(chairbook.spentCents), "spent")
+                if let gap = chairbook.averageGapDays {
+                    Rectangle().fill(Pine.hair).frame(width: Gap.hair, height: 34)
+                    figure(gap == 1 ? "1 day" : "\(gap) days", "between")
+                }
+            }
+        }
+    }
+
+    private func figure(_ value: String, _ caption: String) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(value)
+                .font(Pine.figure(18, .bold))
+                .foregroundColor(Pine.parchment)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+            Text(caption.uppercased())
+                .font(Pine.figure(10, .semibold))
+                .tracking(1)
+                .foregroundColor(Pine.letterSoft)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     /// The time reads large because it is the only part anybody checks twice, and the
@@ -105,6 +147,22 @@ struct VisitsView: View {
                             .font(Pine.figure(14, .semibold))
                             .foregroundColor(isPast ? Pine.letterSoft : Pine.parchment)
                     }
+                }
+
+                // The usual thing anybody does with a haircut they have had: have it
+                // again. Only the service carries over — a service that has since left the
+                // board has nothing to reopen, so the row is not drawn at all.
+                if isPast, let service = held.service {
+                    HairRule()
+                    Button(action: { again = service }) {
+                        Text("Book this again")
+                            .font(Pine.figure(12, .semibold))
+                            .foregroundColor(Pine.parchment)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 7)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
             .padding(16)

@@ -56,6 +56,46 @@ struct Booking: Identifiable, Codable, Equatable {
     }
 }
 
+/// What the customer made of a chair they have already sat in. Kept beside the bookings on
+/// the same phone and shown to nobody: the shop's public reviews live on its own listing,
+/// and the note especially is private to whoever wrote it.
+struct Rating: Identifiable, Codable, Equatable {
+    var bookingId: UUID
+    var stars: Int
+    var note: String
+    var ratedOn: Date
+
+    /// One rating per visit, so the booking it belongs to is the identity.
+    var id: UUID { bookingId }
+
+    init(bookingId: UUID, stars: Int, note: String, ratedOn: Date = Date()) {
+        self.bookingId = bookingId
+        self.stars = stars
+        self.note = note
+        self.ratedOn = ratedOn
+    }
+
+    /// Field by field with a default for each, the same way `Booking` reads — a property
+    /// added in a later version must not throw the whole saved list away and take every
+    /// score the customer has given with it.
+    init(from decoder: Decoder) throws {
+        let box = try decoder.container(keyedBy: CodingKeys.self)
+        bookingId = try box.decodeIfPresent(UUID.self, forKey: .bookingId) ?? UUID()
+        stars = try box.decodeIfPresent(Int.self, forKey: .stars) ?? 0
+        note = try box.decodeIfPresent(String.self, forKey: .note) ?? ""
+        ratedOn = try box.decodeIfPresent(Date.self, forKey: .ratedOn) ?? Date()
+    }
+}
+
+/// A visit and the score put on it, carried together. No name travels with it — the chair
+/// was the shop's, so what is being scored is the visit and nothing narrower.
+struct RatedVisit: Identifiable {
+    let visit: Booking
+    let rating: Rating
+
+    var id: UUID { visit.id }
+}
+
 /// Chair occupancy that behaves like a real book: identical between launches, and moving
 /// together across the room so a busy hour is a busy hour rather than two coin flips.
 enum ChairLoad {
@@ -106,13 +146,19 @@ enum ChairLoad {
 
 final class Chairbook: ObservableObject {
     @Published private(set) var bookings: [Booking] = []
+    @Published private(set) var ratings: [Rating] = []
 
     private let storageKey = "midwood.bookings.v1"
+    private let ratingsKey = "midwood.ratings.v1"
 
     init() {
         if let raw = UserDefaults.standard.data(forKey: storageKey),
            let decoded = try? JSONDecoder().decode([Booking].self, from: raw) {
             bookings = decoded
+        }
+        if let raw = UserDefaults.standard.data(forKey: ratingsKey),
+           let decoded = try? JSONDecoder().decode([Rating].self, from: raw) {
+            ratings = decoded
         }
     }
 
@@ -235,7 +281,12 @@ final class Chairbook: ObservableObject {
 
     func cancel(_ booking: Booking) {
         bookings.removeAll { $0.id == booking.id }
+        // The score goes with it. A rating whose visit has gone can never be shown or
+        // changed again, and left in storage it would sit in the customer's own average
+        // for ever with nothing behind it.
+        ratings.removeAll { $0.bookingId == booking.id }
         persist()
+        persistRatings()
     }
 
     var upcoming: [Booking] {
@@ -251,6 +302,69 @@ final class Chairbook: ObservableObject {
     private func persist() {
         if let raw = try? JSONEncoder().encode(bookings) {
             UserDefaults.standard.set(raw, forKey: storageKey)
+        }
+    }
+
+    // MARK: What you made of it
+
+    func rating(for booking: Booking) -> Rating? {
+        ratings.first { $0.bookingId == booking.id }
+    }
+
+    /// One score per visit, replaced rather than added to — going back to change your mind
+    /// about a chair should not leave two opinions of it in the average.
+    func rate(_ booking: Booking, stars: Int, note: String) {
+        let clamped = min(5, max(1, stars))
+        let trimmed = note.trimmingCharacters(in: .whitespacesAndNewlines)
+        ratings.removeAll { $0.bookingId == booking.id }
+        ratings.append(Rating(bookingId: booking.id, stars: clamped, note: trimmed))
+        persistRatings()
+    }
+
+    /// Visits that have been and carry no score yet — what the Reviews screen offers. A
+    /// chair still to come is not on this list; there is nothing to say about it.
+    var unrated: [Booking] { past.filter { rating(for: $0) == nil } }
+
+    /// The scored ones, newest first because `past` already is. Built from `past` rather
+    /// than from the ratings, so a score whose booking has gone simply never appears.
+    var ratedVisits: [RatedVisit] {
+        past.compactMap { visit in
+            rating(for: visit).map { RatedVisit(visit: visit, rating: $0) }
+        }
+    }
+
+    /// The customer's own average, or nil until they have scored something. Nought stars is
+    /// an opinion nobody gave, and the divisor would be zero.
+    var ownAverage: Double? {
+        let scored = ratedVisits
+        guard !scored.isEmpty else { return nil }
+        return Double(scored.reduce(0) { $0 + $1.rating.stars }) / Double(scored.count)
+    }
+
+    // MARK: The history, totalled
+
+    /// What the visits behind you came to, at today's board. A service that has since left
+    /// the board counts as nothing rather than bringing the sum down with it.
+    var spentCents: Int {
+        past.compactMap { $0.service?.priceCents }.reduce(0, +)
+    }
+
+    /// The usual number of days from one visit to the next. Nil below two visits: there is
+    /// no gap between a single visit and nothing, and the divisor would be zero.
+    var averageGapDays: Int? {
+        let calendar = Calendar.current
+        let days = past.map { calendar.startOfDay(for: $0.start) }.sorted()
+        guard days.count > 1 else { return nil }
+        let gaps = zip(days, days.dropFirst()).compactMap {
+            calendar.dateComponents([.day], from: $0, to: $1).day
+        }
+        guard !gaps.isEmpty else { return nil }
+        return max(0, Int((Double(gaps.reduce(0, +)) / Double(gaps.count)).rounded()))
+    }
+
+    private func persistRatings() {
+        if let raw = try? JSONEncoder().encode(ratings) {
+            UserDefaults.standard.set(raw, forKey: ratingsKey)
         }
     }
 }

@@ -48,6 +48,13 @@ enum Shop {
     static let region = "NC"
     static let postalCode = "28205"
     static let phone = "(980) 237-1222"
+    /// The same number with the brackets, space and dash taken out, which is the only form
+    /// a `tel://` address will take.
+    static var phoneDigits: String { phone.filter { $0.isNumber } }
+    /// The door on The Plaza. Carried alongside the address wherever the shop is put on a
+    /// map, because a street search alone can land on the wrong end of a long road.
+    static let latitude = 35.2377105
+    static let longitude = -80.8007356
     static let established = "Est. 2019"
     /// What this trade calls the person in the chair. Used in copy, never as a filter —
     /// see below.
@@ -59,6 +66,9 @@ enum Shop {
     /// no barber picker anywhere in the app, and nothing anywhere is booked "with" a name.
     static let chairCount = 2
 
+    /// The shop's standing on its own public listing, and the only two public figures this
+    /// app holds. No review text, no names, and no split of that average across the two
+    /// chairs — none of that was counted here, so none of it is printed here.
     static let ratingAverage = 4.9
     static let ratingCount = 394
 

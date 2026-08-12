@@ -13,6 +13,7 @@ struct ShopShell: View {
                 case 0: HomeView(openServices: { tab = 1 })
                 case 1: ServicesView()
                 case 2: VisitsView(openServices: { tab = 1 })
+                case 3: ReviewsView()
                 default: ShopView()
                 }
             }
@@ -47,7 +48,8 @@ struct ShopShell: View {
                 button(index: 0, label: "Home") { BenchMark(size: 22, color: tint(0)) }
                 button(index: 1, label: "Services") { RazorMark(size: 22, color: tint(1)) }
                 button(index: 2, label: "Visits") { StubMark(size: 22, color: tint(2)) }
-                button(index: 3, label: "Shop") { AwningMark(size: 22, color: tint(3)) }
+                button(index: 3, label: "Reviews") { MirrorMark(size: 21, color: tint(3)) }
+                button(index: 4, label: "Shop") { AwningMark(size: 22, color: tint(4)) }
             }
             .padding(.top, 9)
             .padding(.bottom, 3)
@@ -69,11 +71,17 @@ struct ShopShell: View {
         Button(action: { tab = index }) {
             VStack(spacing: 5) {
                 mark()
+                // Five columns now, and "Services" is the longest word in the bar: on a
+                // 320pt screen its column is 64pt wide. The tracking comes down and the
+                // label is held to one line and allowed to shrink rather than wrap or clip.
                 Text(label)
                     .font(Pine.figure(10, .semibold))
-                    .tracking(0.7)
+                    .tracking(0.4)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
                     .foregroundColor(tint(index))
             }
+            .padding(.horizontal, 2)
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
         }

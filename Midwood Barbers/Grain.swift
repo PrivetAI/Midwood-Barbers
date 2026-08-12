@@ -212,6 +212,46 @@ struct AwningMark: View {
     }
 }
 
+/// The hand mirror held up at the end of a cut — the moment the shop asks how it looks,
+/// which is the whole of the Reviews screen in one object.
+struct MirrorMark: View {
+    var size: CGFloat = 24
+    var color: Color = Pine.parchment
+
+    var body: some View {
+        Canvas { context, canvas in
+            let unit = min(canvas.width, canvas.height)
+            let stroke = max(1.4, unit * 0.085)
+
+            let glass = CGRect(x: unit * 0.2, y: unit * 0.1,
+                               width: unit * 0.6, height: unit * 0.66)
+            context.stroke(Path(ellipseIn: glass), with: .color(color), lineWidth: stroke)
+
+            var handle = Path()
+            handle.move(to: CGPoint(x: unit * 0.5, y: unit * 0.74))
+            handle.addLine(to: CGPoint(x: unit * 0.5, y: unit * 0.92))
+            context.stroke(handle, with: .color(color),
+                           style: StrokeStyle(lineWidth: stroke * 1.4, lineCap: .round))
+
+            // The glint in the glass: the same five-pointed star the rating rows use, so
+            // the bar and the screen it opens are drawn out of one alphabet.
+            let center = CGPoint(x: unit * 0.5, y: unit * 0.43)
+            let outer = unit * 0.17
+            var star = Path()
+            for step in 0..<10 {
+                let radius = step % 2 == 0 ? outer : outer * 0.42
+                let angle = -Double.pi / 2 + Double(step) * Double.pi / 5
+                let point = CGPoint(x: center.x + CGFloat(cos(angle)) * radius,
+                                    y: center.y + CGFloat(sin(angle)) * radius)
+                if step == 0 { star.move(to: point) } else { star.addLine(to: point) }
+            }
+            star.closeSubpath()
+            context.fill(star, with: .color(color))
+        }
+        .frame(width: size, height: size)
+    }
+}
+
 /// A small cross, drawn rather than borrowed from the system set.
 struct CrossMark: View {
     var size: CGFloat = 15

@@ -11,6 +11,8 @@
 		4940BAA0D9567B7ABDF2F842 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC2B8F09C9DE5B33A507CDA /* ShopView.swift */; };
 		4B87480DD3858CE5417728A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92FE6B1DC809EEC59E0C21D /* HomeView.swift */; };
 		6160B613E5D704D72E787C5D /* Grain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D184C142DCD68209CCBA304 /* Grain.swift */; };
+		66C1A4E70B25D8F3417A9E12 /* LinkOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A4E60B25D8F3417A9E11 /* LinkOut.swift */; };
+		71E4D2B90F63C5A81D4E7C34 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4D2B80F63C5A81D4E7C33 /* ReviewsView.swift */; };
 		73D016FE54F13D71556235F6 /* MidwoodWebPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603D03DCE38B18144C966C9 /* MidwoodWebPanel.swift */; };
 		76F7340444E97669725F8B0C /* Chairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4517597AC313AA8B223E4DA /* Chairs.swift */; };
 		9F4738A1C157C7B5306833C8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BA38A18437B8BD3AB29938 /* Shop.swift */; };
@@ -27,6 +29,8 @@
 		4603D03DCE38B18144C966C9 /* MidwoodWebPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidwoodWebPanel.swift; sourceTree = "<group>"; };
 		4D184C142DCD68209CCBA304 /* Grain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grain.swift; sourceTree = "<group>"; };
 		52D31E033B61D3E32C437D2F /* MidwoodBarbersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidwoodBarbersApp.swift; sourceTree = "<group>"; };
+		66C1A4E60B25D8F3417A9E11 /* LinkOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkOut.swift; sourceTree = "<group>"; };
+		71E4D2B80F63C5A81D4E7C33 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		7A908520817657D1C3FDE1A0 /* MidwoodOpeningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidwoodOpeningScreen.swift; sourceTree = "<group>"; };
 		8A2C2D2519A8A6A1DEE0E6B4 /* Midwood Barbers.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Midwood Barbers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7FA6C676FBBCB85E16EE5D /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
@@ -56,9 +60,11 @@
 				F4517597AC313AA8B223E4DA /* Chairs.swift */,
 				4D184C142DCD68209CCBA304 /* Grain.swift */,
 				F92FE6B1DC809EEC59E0C21D /* HomeView.swift */,
+				66C1A4E60B25D8F3417A9E11 /* LinkOut.swift */,
 				52D31E033B61D3E32C437D2F /* MidwoodBarbersApp.swift */,
 				7A908520817657D1C3FDE1A0 /* MidwoodOpeningScreen.swift */,
 				4603D03DCE38B18144C966C9 /* MidwoodWebPanel.swift */,
+				71E4D2B80F63C5A81D4E7C33 /* ReviewsView.swift */,
 				9F7FA6C676FBBCB85E16EE5D /* ServicesView.swift */,
 				F0BA38A18437B8BD3AB29938 /* Shop.swift */,
 				F7FDC2262108FCF0722C5228 /* ShopShell.swift */,
@@ -150,9 +156,11 @@
 				76F7340444E97669725F8B0C /* Chairs.swift in Sources */,
 				6160B613E5D704D72E787C5D /* Grain.swift in Sources */,
 				4B87480DD3858CE5417728A4 /* HomeView.swift in Sources */,
+				66C1A4E70B25D8F3417A9E12 /* LinkOut.swift in Sources */,
 				A0F2D5C7ABF4EA4508321167 /* MidwoodBarbersApp.swift in Sources */,
 				C5F6D8A39BDB1E9029B8EA95 /* MidwoodOpeningScreen.swift in Sources */,
 				73D016FE54F13D71556235F6 /* MidwoodWebPanel.swift in Sources */,
+				71E4D2B90F63C5A81D4E7C34 /* ReviewsView.swift in Sources */,
 				E5151E2D44EC75A2A5E7FB4B /* ServicesView.swift in Sources */,
 				9F4738A1C157C7B5306833C8 /* Shop.swift in Sources */,
 				CD1DDF8F8D7CA98A736FABD9 /* ShopShell.swift in Sources */,

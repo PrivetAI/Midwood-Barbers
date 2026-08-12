@@ -1,4 +1,14 @@
 import SwiftUI
+import MapKit
+
+/// The one pin on the shop's map. `Map` wants a collection of identified items even where
+/// the collection is a single shop that has not moved since 2019.
+struct ShopPin: Identifiable {
+    let id = "shop"
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: Shop.latitude, longitude: Shop.longitude)
+    }
+}
 
 /// The shop itself: the week it keeps, where it is, and what people make of it. There is
 /// no roster section here, because there is no roster — a two-chair shop on The Plaza
@@ -6,6 +16,13 @@ import SwiftUI
 struct ShopView: View {
     @State private var now = Date()
     @State private var readingPolicy = false
+
+    /// A fixed window on a fixed shop. The map never moves and never follows the phone —
+    /// nothing on this screen asks where anybody is, so the app carries no location
+    /// permission and no key for one.
+    @State private var window = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: Shop.latitude, longitude: Shop.longitude),
+        span: MKCoordinateSpan(latitudeDelta: 0.004, longitudeDelta: 0.004))
 
     private let tick = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
@@ -106,7 +123,47 @@ struct ShopView: View {
             Text(Shop.phone)
                 .font(Pine.figure(15))
                 .foregroundColor(Pine.parchment)
+
+            map
+
+            // Side by side, because they are the two things somebody standing on The Plaza
+            // with this open actually wants: the door, or the shop's phone. Both hand off
+            // to an app that does the job properly rather than a worse copy of it in here.
+            HStack(spacing: 10) {
+                GhostButton(title: "Directions") { LinkOut.open(LinkOut.directions) }
+                GhostButton(title: "Call") { LinkOut.open(LinkOut.call) }
+            }
         }
+    }
+
+    /// A still picture of the corner, in the app's own panel chrome. Interaction is off in
+    /// both directions — the map takes no gestures and swallows no taps, so it cannot eat
+    /// a scroll meant for the screen. The buttons under it open the phone's own maps, which
+    /// does the panning far better than a 170pt window ever would.
+    private var map: some View {
+        Map(coordinateRegion: $window,
+            interactionModes: [],
+            annotationItems: [ShopPin()]) { pin in
+            MapAnnotation(coordinate: pin.coordinate) {
+                ZStack {
+                    Circle()
+                        .fill(Pine.parchment)
+                        .frame(width: 13, height: 13)
+                    Circle()
+                        .stroke(Pine.parchment.opacity(0.5), lineWidth: 2)
+                        .frame(width: 26, height: 26)
+                }
+            }
+        }
+        .frame(height: 170)
+        .allowsHitTesting(false)
+        .overlay(
+            RoundedRectangle(cornerRadius: Gap.corner)
+                .stroke(Pine.edge, lineWidth: Gap.hair)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: Gap.corner))
+        .accessibilityElement()
+        .accessibilityLabel("Map of \(Shop.name), \(Shop.addressLine)")
     }
 
     private var policy: some View {
