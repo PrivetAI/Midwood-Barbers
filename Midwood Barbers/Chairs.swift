@@ -164,10 +164,12 @@ final class Chairbook: ObservableObject {
 
     // MARK: Availability
 
-    static func dayKey(_ day: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: day)
+        /// The string every occupancy hash is seeded from, so it must be stable whatever
+    /// the phone's language and calendar are set to.
+    static let keyFormatter = Fixed.formatter("yyyy-MM-dd", posix: true)
+
+static func dayKey(_ day: Date) -> String {
+        keyFormatter.string(from: day)
     }
 
     /// Every half hour the shop is open on this day, with the number of chairs that stay
@@ -422,28 +424,47 @@ enum DoorState {
     }
 }
 
+/// Built once and pinned to English and Gregorian — these apps ship in English only,
+/// and a day strip that changed language with the phone would not match the shop's sign.
 enum Stamp {
+    private static let fullFace = Fixed.formatter("EEE d MMM")
+    private static let shortFace = Fixed.formatter("EEE")
+    private static let figureFace = Fixed.formatter("d")
+    private static let longFace = Fixed.formatter("EEEE")
+
     static func day(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE d MMM"
-        return formatter.string(from: date)
+        fullFace.string(from: date)
     }
 
     static func weekday(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE"
-        return formatter.string(from: date)
+        shortFace.string(from: date)
     }
 
     static func dayNumber(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d"
-        return formatter.string(from: date)
+        figureFace.string(from: date)
     }
 
     static func weekdayFull(_ date: Date) -> String {
+        longFace.string(from: date)
+    }
+}
+
+/// Date formatting is pinned rather than left to the device. `DateFormatter` otherwise
+/// follows the phone's locale and calendar, which would translate the day strip and — far
+/// worse — change the day key the occupancy hash is seeded from, reshuffling the whole
+/// fortnight for anyone whose phone is not on English and Gregorian.
+enum Fixed {
+    static let gregorian: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "en_US_POSIX")
+        return calendar
+    }()
+
+    static func formatter(_ format: String, posix: Bool = false) -> DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        return formatter.string(from: date)
+        formatter.locale = Locale(identifier: posix ? "en_US_POSIX" : "en_US")
+        formatter.calendar = Fixed.gregorian
+        formatter.dateFormat = format
+        return formatter
     }
 }
