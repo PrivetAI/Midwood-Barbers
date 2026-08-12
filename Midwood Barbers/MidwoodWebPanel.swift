@@ -14,7 +14,19 @@ struct MidwoodWebPanel: UIViewRepresentable {
         // this is presented. Never .never: that always draws under the clock.
         panel.scrollView.contentInsetAdjustmentBehavior = .always
         panel.isOpaque = true
-        panel.backgroundColor = UIColor(red: 0.086, green: 0.141, blue: 0.114, alpha: 1)
+        // Black, not a brand colour: the safe-area band has to contrast with the clock
+
+        // and battery drawn on it.
+
+        panel.backgroundColor = .black
+
+        panel.scrollView.backgroundColor = .black
+
+        // The branch presenting this runs dark so those glyphs turn white; pin the page
+
+        // itself back to light so that trait never reaches the site.
+
+        panel.overrideUserInterfaceStyle = .light
 
         if let url = URL(string: urlString) {
             panel.load(URLRequest(url: url))

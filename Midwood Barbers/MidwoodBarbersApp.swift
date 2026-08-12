@@ -21,21 +21,25 @@ struct MidwoodBarbersApp: App {
                         // The frame keeps clear of the top safe area on purpose. Letting
                         // it run under would put the page's own header behind the clock,
                         // and no content inset setting reliably pulls it back down.
+                        // The band above the panel is black, not pine: it has to contrast
+                        // with the clock and battery, and .dark draws those white on it.
                         MidwoodWebPanel(urlString: MidwoodGate.sourceLink)
                             .edgesIgnoringSafeArea(.bottom)
-                            .background(Pine.ground.ignoresSafeArea())
+                            .background(Color.black.ignoresSafeArea())
+                            .preferredColorScheme(.dark)
                     } else {
+                        // Fixed appearance, set per branch. One modifier on the Group
+                        // would override the WebView branch above.
                         ShopShell()
                             .environmentObject(chairbook)
+                            .preferredColorScheme(.dark)
                     }
                 } else {
                     MidwoodOpeningScreen()
                         .onAppear(perform: settleMidwoodLink)
+                        .preferredColorScheme(.dark)
                 }
             }
-            // Fixed appearance. The pine and parchment read the same whatever the phone's
-            // own light or dark setting says.
-            .preferredColorScheme(.dark)
         }
     }
 
