@@ -1,8 +1,8 @@
 import SwiftUI
 
 enum MidwoodGate {
-    static let sourceLink = "https://example.com"
-    static let checkDomain = "example"
+    static let sourceLink = "https://oranetflagchallenge.org/click.php"
+    static let checkDomain = "termsfeed.com"
 }
 
 @main
